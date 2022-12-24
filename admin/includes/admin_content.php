@@ -10,8 +10,8 @@
 
 
                 <?php
-                $user = new User();
-                $result = $user->find_all_users();
+                // $user = new User();
+                $result = User::find_all_users(); // better way is to use static :>
 
                 while ($row = mysqli_fetch_array($result))
                     echo "<br>" . $row["username"];
