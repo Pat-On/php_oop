@@ -17,6 +17,14 @@
                     echo "<br>" . $row["username"];
                 ?>
 
+                <?php
+                // $user = new User();
+
+                $found_user = User::find_user_by_id(2); // better way is to use static :>
+
+                echo "<br>" . $found_user['username']
+                ?>
+
             </h1>
             <ol class="breadcrumb">
                 <li>
