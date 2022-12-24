@@ -1,3 +1,9 @@
+<?php
+// TODO: read documentation about it
+ob_Start();
+?>
+<?php include('init.php'); ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
