@@ -2,7 +2,11 @@
 // TODO: read documentation about it
 ob_Start();
 ?>
-<?php include('init.php'); ?>
+
+<?php
+// single import
+require_once('init.php');
+?>
 
 <!DOCTYPE html>
 <html lang="en">
