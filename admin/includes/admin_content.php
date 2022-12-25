@@ -11,18 +11,25 @@
 
                 <?php
                 // $user = new User();
-                $result = User::find_all_users(); // better way is to use static :>
+                // $result = User::find_all_users(); // better way is to use static :>
 
-                while ($row = mysqli_fetch_array($result))
-                    echo "<br>" . $row["username"];
+                // while ($row = mysqli_fetch_array($result))
+                //     echo "<br>" . $row["username"];
+                $users = User::find_all_users();
+
+                foreach($users as $user) {
+                    echo $user->username . "<br>";
+                }
                 ?>
 
                 <?php
                 // $user = new User();
 
-                $found_user = User::find_user_by_id(2); // better way is to use static :>
+                // $found_user = User::find_user_by_id(2); // better way is to use static :>
+                // $user = User::instantiation($found_user);
 
-                echo "<br>" . $found_user['username']
+                $found_user = User::find_user_by_id(1);
+                echo "<br>" . $found_user->username;
                 ?>
 
             </h1>
