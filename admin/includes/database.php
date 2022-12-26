@@ -25,7 +25,7 @@ class Database
         if ($this->connection->connect_errno) {
             die("Database connection failed badly " . $this->connection->connect_error);
         } else {
-            echo "Connection to db has been established";
+            // echo "Connection to db has been established";
         }
         // if (mysqli_connect_errno()) {
         //     die("Database connection failed badly " . mysqli_error($this->connection));
