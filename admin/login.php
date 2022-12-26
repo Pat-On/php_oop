@@ -12,9 +12,6 @@ if ($session->is_signed_in()) {
 
 $the_message = "";
 
-// echo $_POST["username"] . " ??????? " . $_POST["password"] . " ??????? " . $_POST["submit"];
-
-// TODO: WHY this is not working on post?
 if (isset($_POST["submit"])) {
     $username = trim($_POST["username"]);
     $password = trim($_POST["password"]);
@@ -44,13 +41,13 @@ if (isset($_POST["submit"])) {
 
         <div class="form-group">
             <label for="username">Username</label>
-            <input type="text" class="form-control" name="username" value="<?php echo $username; ?>">
+            <input type="text" class="form-control" name="username" value="<?php echo htmlentities($username); ?>">
 
         </div>
 
         <div class="form-group">
             <label for="password">Password</label>
-            <input type="password" class="form-control" name="password" value="<?php echo $password; ?>">
+            <input type="password" class="form-control" name="password" value="<?php echo htmlentities($password); ?>">
 
         </div>
 
