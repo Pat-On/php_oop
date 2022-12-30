@@ -10,14 +10,20 @@
 
 
                 <?php
-                $user = new User();
+                // $user = new User();
 
-                $user->username = "static_user";
-                $user->password = "static";
-                $user->firstname = "first_name";
-                $user->lastname = "last_name";
+                // $user->username = "static_user";
+                // $user->password = "static";
+                // $user->firstname = "first_name";
+                // $user->lastname = "last_name";
 
                 // $user->create();
+
+
+                $user = User::find_user_by_id(1);
+                $user->lastname = "AfterUpdate";
+                $user->update();
+
 
                 ?>
 

@@ -129,5 +129,22 @@ class User
         } else {
             return false;
         }
+    } // create method
+
+
+    public function update()
+    {
+        global $database;
+
+        $sql = "UPDATE users SET ";
+        $sql .= "username= '" . $database->escape_string(($this->username)) . "', ";
+        $sql .= "password= '" . $database->escape_string(($this->password)) . "', ";
+        $sql .= "first_name= '" . $database->escape_string(($this->firstname))  . "', ";
+        $sql .= "last_name= '" . $database->escape_string(($this->lastname))  . "' ";
+        $sql .= " WHERE id= " .   $database->escape_string(($this->id));
+
+        $query_status =  $database->query($sql);
+
+        return (mysqli_affected_rows($database->connection) == 1) ? true : false;
     }
 } // end of the user class
