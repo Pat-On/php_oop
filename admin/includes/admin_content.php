@@ -20,14 +20,21 @@
                 // $user->create();
 
 
-                $user = User::find_user_by_id(2);
-                // $user->lastname = "AfterUpdate";
-                if ($user) {
+                // $user = User::find_user_by_id(9);
+                // // $user->lastname = "AfterUpdate";
+                // if ($user) {
 
 
-                    $user->delete();
-                }
+                //     $user->delete();
+                // }
 
+                // $user = User::find_user_by_id(10);
+                // $user->username = "Whatever";
+                // $user->save();
+
+                // $user = new User();
+                // $user->username = "Whatever_2000";
+                // $user->save();
                 ?>
 
             </h1>
