@@ -4,6 +4,9 @@
 class User
 {
     protected static $db_table = "users";
+    protected static $db_table_fields = array('username', 'password', 'firstname', 'lastname');
+
+
     public $id;
     public $username;
     public $password;
@@ -108,6 +111,24 @@ class User
     }
 
 
+    protected function properties()
+    {
+        // return get_object_vars($this);
+
+        $properties = array();
+
+        foreach (self::$db_table_fields as $db_field) {
+
+            if (property_exists($this, $db_field)) {
+
+                $properties[$db_field] = $this->$db_field;
+            }
+        }
+
+        return $properties;
+    }
+
+
     public function save()
     {
         return isset($this->id) ? $this->update() : $this->create();
@@ -119,13 +140,17 @@ class User
     {
         global $database;
 
-        $sql = "INSERT INTO " . self::$db_table .  " (username, password, first_name, last_name) ";
-        $sql .= "VALUES('";
-        $sql .= $database->escape_string($this->username) . "', '";
-        $sql .= $database->escape_string($this->password) . "', '";
-        $sql .= $database->escape_string($this->firstname) . "', '";
-        $sql .= $database->escape_string($this->lastname) . "' )";
+        $properties = $this->properties();
 
+        // https://www.php.net/manual/en/function.implode.php
+        // https://www.w3schools.com/php/func_string_implode.asp 
+        $sql = "INSERT INTO " . self::$db_table .  "(" . implode(',', array_keys($properties)) . ")";
+        $sql .= "VALUES('" .  implode("','", array_values($properties))   . "')";
+
+        // echo $sql;
+        // users(id,username,password,firstname,lastname)VALUES('','static_user','static','first_name','last_name')
+        // after upgrade
+        // users(username,password,firstname,lastname)VALUES('static_user','static','first_name','last_name')
 
         $query_status =  $database->query($sql);
         if ($query_status) {
@@ -143,13 +168,27 @@ class User
     {
         global $database;
 
+        $properties = $this->properties();
+
+        $properties_pairs = array();
+
+        foreach ($properties as $key => $value) {
+            $properties_pairs[] = "{$key}='{$value}'";
+        }
+
         $sql = "UPDATE " . self::$db_table .  " SET ";
-        $sql .= "username= '" . $database->escape_string(($this->username)) . "', ";
-        $sql .= "password= '" . $database->escape_string(($this->password)) . "', ";
-        $sql .= "first_name= '" . $database->escape_string(($this->firstname))  . "', ";
-        $sql .= "last_name= '" . $database->escape_string(($this->lastname))  . "' ";
+
+        $sql .= implode(", ", $properties_pairs);
+
+
+        // $sql .= "username= '" . $database->escape_string(($this->username)) . "', ";
+        // $sql .= "password= '" . $database->escape_string(($this->password)) . "', ";
+        // $sql .= "firstname= '" . $database->escape_string(($this->firstname))  . "', ";
+        // $sql .= "lastname= '" . $database->escape_string(($this->lastname))  . "' ";
         $sql .= " WHERE id= " .   $database->escape_string(($this->id));
 
+        // echo $sql;
+        // UPDATE users SET username='Whatever 2', password='static', firstname='first_name', lastname='last_name' WHERE id= 14
         $query_status =  $database->query($sql);
 
         return (mysqli_affected_rows($database->connection) == 1) ? true : false;
