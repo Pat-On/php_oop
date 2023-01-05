@@ -35,6 +35,13 @@
                 // $user = new User();
                 // $user->username = "Whatever_2000";
                 // $user->save();
+
+                // $users = User::find_all();
+                // foreach ($users as $user) {
+                //     echo $user->username;
+                //     echo "<br/>";
+                // }
+
                 ?>
 
             </h1>
