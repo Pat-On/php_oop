@@ -42,6 +42,21 @@
                 //     echo "<br/>";
                 // }
 
+                // $photos = Photo::find_all();
+                // foreach ($photos as $photo) {
+                //     echo $photo->title;
+                //     echo "<br/>";
+                // }
+
+                // $photo = new Photo();
+
+                // $photo->title = "static_photo";
+                // $photo->description = "static";
+                // $photo->filename = "filename";
+                // $photo->type = "type";
+
+                // $photo->create();
+
                 ?>
 
             </h1>
