@@ -57,6 +57,8 @@
 
                 // $photo->create();
 
+                // echo SITE_ROOT;
+
                 ?>
 
             </h1>
