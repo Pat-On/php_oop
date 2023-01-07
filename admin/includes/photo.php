@@ -69,7 +69,7 @@ class Photo extends Db_object
 
 
             // permanent location of the file
-            $target_path = SITE_ROOT . DS . 'admin' . $this->upload_directory . DS . $this->filename;
+            $target_path = SITE_ROOT . DS . 'admin' . DS . $this->upload_directory . DS . $this->filename;
 
             // guard if file exists
             if (file_exists($target_path)) {
