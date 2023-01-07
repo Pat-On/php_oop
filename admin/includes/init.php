@@ -20,3 +20,5 @@ require_once('user.php');
 require_once('photo.php');
 require_once('functions.php');
 require_once('session.php');
+
+// This is passing $_FILES['uploaded_file'] as an argument
