@@ -1,4 +1,19 @@
 <?php include("includes/header.php"); ?>
+<?php
+if (!$session->is_signed_in()) {
+    redirect("login.php");
+}
+
+?>
+
+
+<?php
+
+$photos = Photo::find_all();
+
+
+?>
+
 
 <!-- Navigation -->
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -38,13 +53,18 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                            <tr></tr>
-                            <tr></tr>
-                            <tr></tr>
-                            <tr></tr>
-                            <tr></tr>
-                            </tr>
+                            <!-- interesting syntax -->
+                            <?php foreach ($photos as $photo) :  ?>
+
+                                <tr>
+                                    <td><img style="width: 128px;"  src="<?php echo $photo->picture_path(); ?>" alt=""></td>
+                                    <td><?php echo $photo->photo_id; ?></td>
+                                    <td><?php echo $photo->filename; ?></td>
+                                    <td><?php echo $photo->title; ?></td>
+                                    <td><?php echo $photo->size; ?></td>
+                                </tr>
+
+                            <?php endforeach; ?>
 
                         </tbody>
 

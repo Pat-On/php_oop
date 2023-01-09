@@ -50,6 +50,14 @@ class Photo extends Db_object
         }
     }
 
+
+    public function picture_path()
+    {
+        return $this->upload_directory . DS . $this->filename;
+    }
+
+
+
     // we are utilizing the methods from parent class
     public function save()
     {
